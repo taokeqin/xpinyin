@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 import os.path
 import re
+import mandarin
 
 PinyinToneMark = {
     0: u"aoeiuv\u00fc",
@@ -50,14 +51,9 @@ class Pinyin(object):
     .. _chinese\_pinyin: https://github.com/flyerhzm/chinese_pinyin
     """
 
-    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                             'Mandarin.dat')
+    def __init__(self):
 
-    def __init__(self, data_path=data_path):
-        self.dict = {}
-        for line in open(data_path):
-            k, v = line.split('\t')
-            self.dict[k] = v
+        self.dict = mandarin.data
 
     def decode_pinyin(self, s):
         s = s.lower()
